@@ -1,6 +1,7 @@
 %
-% Simulation input
-%
+% A sample program written using Matlab syntax that
+% determines the self-consistent solution of the 
+% 1D Schroedinger-Poisson equation. 
 %
 % Assumptions:
 %
@@ -18,8 +19,15 @@
 % In the units used, this value is specified by the relation
 % (hbar^2/(2*mStar)) = hFactor/(effMassFactor) with hFactor = 0.0381
 %
- 
-
+% Created for Field Institute Mini-Course
+% "Numerical Techniques for Simulating Collective and Coherent Qusntum States"
+%
+% Author  : Chris Anderson
+% Date    : April 15, 2018
+% License : GPLv3 (you can do what you want with it)
+%
+% An "alpha" version (necessary validation still needs to be donw)
+% 
 E_fermi        = 0.0;
  
 phiA           = 0.0;
@@ -143,29 +151,6 @@ meshWeight(pointCount) = layerMeshSizes(layerCount)/2.0;
 % Test solution of constant coefficient problem
 %
 
-potTest = false;
-
-if(potTest)
-
-dFactor  = diElecCoeff(1);
-f        = @(x)-dFactor*(1./50.0)*exp(-(1.0/10.0)*x).*cos((1.0/10.0)*x);
-phiExact = @(x)exp(-(1.0/10.0)*x).*sin((1.0/10.0)*x);
-phiA     = phiExact(zGrid(1));
-phiB     = phiExact(zGrid(pointCount));
-
-rho      = f(zGrid);
-phi      = CreatePotential(rho,phiA,phiB,potParams,L,D);
-
-u = phiExact(zGrid);
-% plot(zGrid,phi,zGrid,u,"-+k");
-
-
-uErr = u - phi;
-uErrNorm = sum(meshWeight*(uErr.^(2)));
-uErrNorm
-return;
-end
-
 rhoZero   = zeros(pointCount,1);
 phiBase   = CreatePotential(rhoZero,phiA,phiB,potParams,L,D);
 phiBase   = phiBase + bandShiftPotential;
@@ -186,13 +171,20 @@ phiFinal = phiN + phiBase;
 % Create eigensystem and density associated with self-consistent 
 % solution.
 %
+
 P  = CreatePotentialOp(phiFinal);
 S  = K + P;
 [eigVectors,eigVal] = CreateEigenSystem(S,sqrtInvD);
 rho = CreateDensity(eigVal,eigVectors,denParams);
 
+% Plot the final potential 
+
 plot(zGrid,phiFinal);
+
 pause
+
+% Plot the density 
+
 plot(zGrid,rho);
 
 
