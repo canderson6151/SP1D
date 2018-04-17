@@ -148,7 +148,19 @@ end
 meshWeight(pointCount) = layerMeshSizes(layerCount)/2.0;
 
 %
-% Test solution of constant coefficient problem
+% Carry out 10 self-consistent iterations with relaxation
+% factor dt. This self-consistent iteration is implemented
+% as the Forward Euler method applied to the equation 
+%
+% dphiTilde/dt = -DELTA^(-1) rho_e( phiTilde, phiBase) - phiTilde
+%
+% See Notes Lecture 4
+%
+% A fixed number of timesteps is taken for demonstration,
+% typically a stopping condition dependent upon the 
+% difference between iterates would be used (along with
+% a condition that stops if too many iterations have 
+% been taken)
 %
 
 rhoZero   = zeros(pointCount,1);
