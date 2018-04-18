@@ -27,8 +27,14 @@
 function [eigVectors,eigVal] = CreateEigenSystem(S,sqrtInvD)
 %
 % Convert to a standard symmetric eigenvalue problem 
-% 
+
 A                      = sqrtInvD*S*sqrtInvD;
+% 
+% Note I'm converting to a full matrix then using eig(...)
+% One should investigate using eigs(...), the eigensystem
+% routine specifically for sparse matrices.
+%
+
 [eigVecTemp,eigValues] = eig(full(A));
 
 
