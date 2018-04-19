@@ -26,8 +26,16 @@
 % Date    : April 15, 2018
 % License : GPLv3 (you can do what you want with it)
 %
-% An "alpha" version (necessary validation still needs to be donw)
-% 
+% An "alpha" version (necessary validation still needs to be done)
+%
+% Note: Since Dirichlet conditions are used, the size of the 
+% sparse matrix representation of the operators is 
+% pointCount - 2 X pointCount - 2 where pointCount is the total number 
+% of grid points. However, for the functions that use these 
+% sparse matrices and have vector inputs (for right hand sides, etc.) 
+% the lengths of the input vectors is pointCount.  
+%
+
 E_fermi        = 0.0;
  
 phiA           = 0.0;
