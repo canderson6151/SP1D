@@ -1,3 +1,23 @@
+%
+% Function CreateDensity
+%
+% This function creates the density of electrons by summing
+% over those states for which the energy (eigenvalue) is less
+% than the specified Fermi level value E_fermi
+%
+% The density value at a given point is the square of the
+% eigenvector X the density of states function, which
+% in this case is given by densityOfStates2D
+%
+% Since the program is written assuming that the effective
+% mass can be discontinous across layer boundaries, and
+% the density of states function depends on the effective mass,
+% the calculation of the density at layer boundaries is 
+% multi-valued. This routine uses the average value of the
+% density for layer boundary points. 
+%
+% 
+%
 function [rho] = CreateDensity(energies,U,denParams)
 
 % Extract parameters

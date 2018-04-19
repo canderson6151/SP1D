@@ -1,3 +1,8 @@
+%
+% A density of states function for a T = 0 (0 temperature). 
+%
+%
+
 function density = densityOfStates2D(E,E_fermi,hFactor,effMassFactor)
 %
 % Formula used (double occupancy)

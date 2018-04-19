@@ -1,3 +1,29 @@
+%
+% Function CreatePotential
+%
+% This function uses the sparse matrix representation 
+% of a finite volume discretization of Poisson's problem 
+% to solve the Poisson problem with Dirichlet boundary
+% conditions. 
+%
+% Inputs
+%
+% f: right hand side of Poisson's equation. A vector of length
+%    pointCount. The values at the first and last index corresponding
+%    to values at boundary points are ignored.
+%
+% phiA, phiB : values specifying the boundary values of the solution
+%              at the endpoints of the interval.
+%
+% potParams, L, D : Grid parameters and sparse matrix representations of the
+%                   discrete approxiamtion to Poisson's equation. 
+%
+%                   The L and D sparse matrices are those created by 
+%                   the CreateLapOp function. 
+%
+
+
+
 function [phi] = CreatePotential(f,phiA,phiB,potParams,L,D)
 
 % Extract parameters 

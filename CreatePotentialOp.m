@@ -1,5 +1,14 @@
-
-
+%
+% CreatePotentialOp
+%
+% This function creates the sparse matrix representation of an 
+% operator that is the multiplication by a potential. 
+%
+% Inputs
+%
+% potential: A vector of length pointCount containing the values
+%            of the potential function. The values at the first 
+%            and last index are ignored.
 function [P] = CreatePotentialOp(potential)
  
 
